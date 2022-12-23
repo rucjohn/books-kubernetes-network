@@ -6,7 +6,8 @@
 
 ## 创建
 
-创建一个名为 netns1 的 network namespace，可以使用以下命令：
+创建一个名为 netns1 的 network namespace
+
 ```bash
 ip netns add netns1
 ```
@@ -16,10 +17,13 @@ ip netns add netns1
 ## 进入
 
 一个 network namespace 被创建出来后，可以使用 `ip netns exec` 命令进入，做一些网络查询配置的工作。
+
 ```bash
 ip netns exec netns1 ip link list
 ```
+
 输出
+
 ```
 1: lo: <LOOPBACK> mtu 65536 qdisc noop state DOWN mode DEFAULT
     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
@@ -30,20 +34,21 @@ ip netns exec netns1 ip link list
 ## 查看
 
 想查看系统中有哪些 network namespace，可以使用以下命令：
+
 ```bash
 ip netns list
 ```
 
 ## 删除
+
 想删除 network namespace，可以通过以下命令实现：
+
 ```bash
 ip netns delete netns1
 ```
+
 {% hint style="info" %}
 <mark style="color:blue;">**说明：**</mark>
 
-注意，上面这条命令实际上并没有删除 netns1 这个 network namespace，它只是移除了挂载点（下文会解释）。只要里面还有进行运行着，network namespace 便会一直存在。
+`ip netns delete` 命令实际并没有 network namespace，只是移除了挂载点（下文会解释）。只要里面还有进程运行着，network namespace 便会一直存在。
 {% endhint %}
-
-
-
